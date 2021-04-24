@@ -1,0 +1,28 @@
+d = {"Fitbit Plus": 7980, "IPods": 22349, "MI Band": 999, "Cult Pass": 2799, "Macbook Pro": 229900,
+ "Digital Camera": 11101,"Alexa": 9999, "Sandwich Toaster": 2195, "Microwave Oven": 9800, "Scale": 4999}
+d_descending = sorted(d.items(),key=lambda kv: kv[1], reverse=True)
+goodies_price={}
+for i in d_descending:
+	goodies_price[i[0]] = i[1]
+
+n = int(input("Enter number of Employee :"))
+
+min_val = 99999999999999
+i_val = 0
+j_val = 0
+val =[i for i in goodies_price.values()]
+keys = [i for i in goodies_price.keys()]
+
+for i in range(len(goodies_price.keys())-n):
+	if(min_val>abs(val[i]-val[i+n-1])):
+		i_val = i
+		j_val = i + n -1 
+		min_val = abs(val[i]-val[i+n-1])
+result = []
+for i in range(i_val,j_val+1):
+	result.append([keys[i],val[i]])
+print("The goodies selected for distribution are:\n")
+for i in result:
+	print(i[0] , ": "  , i[1])
+price = result[0][1] - result[-1][1]
+print("\nAnd the difference between the chosen goodie with highest price and the lowest price is ", price)
